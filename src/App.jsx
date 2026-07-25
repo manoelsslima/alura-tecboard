@@ -12,7 +12,38 @@ import './App.css'
 function TituloFormulario(props){
   return (
     <h2>{props.children}</h2>
+  );
+}
+
+// {children} é uma forma de desestruturar o objeto props, pegando apenas a propriedade children
+function CampoDeFormulario({ children }){
+  return (
+    <fieldset>
+      {children}
+    </fieldset>
+  );
+}
+
+// htmlFor é uma propriedade do elemento label. O componente <Label /> é um componente
+// que recebe a propriedade htmlFor e a repassa para o elemento label. Isso é
+// necessário porque o React não permite que você use a palavra-chave for como uma
+// propriedade de um elemento, então você precisa usar htmlFor no lugar.
+function Label({children, htmlFor}) {
+  return (
+    <label htmlFor={htmlFor}>
+      {children}
+    </label>
   )
+}
+
+// o spread operator (...) é usado para passar todas as propriedades do objeto props
+// para o elemento input. Isso é útil quando você quer criar um componente que seja
+// um "wrapper" para outro componente, e quer que ele aceite todas as propriedades
+// do componente original.
+function CampoDeEntrada(props) {
+  return (
+    <input {...props} />
+  );
 }
 
 function FormularioDeEvento() {
@@ -21,10 +52,12 @@ function FormularioDeEvento() {
       <TituloFormulario>
         Preencha para criar um evento:
       </TituloFormulario>
-      <fieldset>
-        <label htmlFor="nome">Qual o nome do evento?</label>
-        <input type="text" id="nome" name="nome" placeholder="Summer dev hits" />
-      </fieldset>
+      <CampoDeFormulario>
+        <Label htmlFor="nome">
+          Qual o nome do evento?
+        </Label>
+        <CampoDeEntrada id="nome" name="nome" placeholder="Summer dev hits" />
+      </CampoDeFormulario>
     </form>
   );
 }

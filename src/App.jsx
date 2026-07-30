@@ -101,10 +101,15 @@ function App() {
       </header>
       <Banner />
       <FormularioDeEvento />
-      <section>
-        <Tema tema={temas[0]} />
-      </section>
-      <section>
+      {temas.map(function (item) {
+        return (
+        <section key={item.id}>
+          <Tema tema={item} />
+        </section>
+        )
+      })}
+      
+      {/* <section>
         <Tema tema={temas[1]} />
       </section>
       <section>
@@ -118,7 +123,7 @@ function App() {
       </section>
       <section>
         <Tema tema={temas[5]} />
-      </section>
+      </section> */}
     </main>
   )
 }

@@ -7,7 +7,7 @@ import { Botao } from '../Botao';
 
 import './formulario-de-evento.estilos.css';
 
-export function FormularioDeEvento() {
+export function FormularioDeEvento( {temas} ) {
   return (
     <form className="form-evento">
       <TituloFormulario>
@@ -26,6 +26,17 @@ export function FormularioDeEvento() {
         </CampoDeFormulario>
 
         <CampoDeFormulario>
+          <Label htmlFor="capa">
+            Qual o endereço da imagem de capa?
+          </Label>
+          <CampoDeEntrada
+            type="text"
+            id="capa"
+            name="capa"
+            placeholder="http://..." />
+        </CampoDeFormulario>
+
+        <CampoDeFormulario>
           <Label htmlFor="dataEvento">
             Qual a data do evento?
           </Label>
@@ -37,10 +48,10 @@ export function FormularioDeEvento() {
         </CampoDeFormulario>
 
         <CampoDeFormulario>
-          <Label htmlFor="dataEvento">
-            Selecione
+          <Label htmlFor="tema">
+            Tema do Evento
           </Label>
-          <ListaSuspensa />
+          <ListaSuspensa id="tema" name="tema" itens={temas} />
         </CampoDeFormulario>
       </div>
       <div className="acoes">

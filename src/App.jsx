@@ -111,7 +111,7 @@ function App() {
         <img src="/logo.png" alt="Logo do TechBoard" />
       </header>
       <Banner />
-      <FormularioDeEvento />
+      <FormularioDeEvento temas={temas} />
       {temas.map(function (item) {
         return (
         <section key={item.id}>

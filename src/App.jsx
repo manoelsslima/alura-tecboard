@@ -95,15 +95,25 @@ function App() {
     }
   ]
 
-  const eventos = [
+  // o useState é um hook e retorna um array de duas posições:
+  // [estado, função que altera/seta/define um novo valor para o estado]
+  const [eventos, setEventos] = useState([
     {
-      id: 1,
       capa: 'https://raw.githubusercontent.com/viniciosneves/tecboard-assets/refs/heads/main/imagem_1.png',
       tema: temas[0],
       data: new Date(),
       titulo: 'React Summit 2024',
-    }
-  ]
+    }]
+  );
+
+  /*
+  essa função é passada como parâmetro do método aoSubmeter do FormularioDeEvento
+  */
+  function adicionarEvento(evento) {
+    setEventos([...eventos, evento]); // seta o array que já existia e adiciona o novo ao final
+    // eventos.push(evento);
+    // console.log("Eventos => ", eventos);
+  }
 
   return (
     <main>
@@ -111,16 +121,18 @@ function App() {
         <img src="/logo.png" alt="Logo do TechBoard" />
       </header>
       <Banner />
-      <FormularioDeEvento temas={temas} />
+      <FormularioDeEvento temas={temas} aoSubmeter={adicionarEvento} />
       {temas.map(function (item) {
         return (
-        <section key={item.id}>
-          <Tema tema={item} />
-          <CardEvento evento={eventos[0]} />
-        </section>
+          <section key={item.id}>
+            <Tema tema={item} />
+            {eventos.map(function (item, indice) {
+              return <CardEvento evento={item} key={indice} />
+            })}
+          </section>
         )
       })}
-      
+
       {/* <section>
         <Tema tema={temas[1]} />
       </section>

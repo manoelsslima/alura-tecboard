@@ -1,6 +1,6 @@
 import './card-evento.estilos.css';
 
-export function CardEvento( { evento } ) {
+export function CardEvento({ evento }) {
     return (
         <div className="card-evento">
             <img src={evento.capa} alt={evento.titulo} />

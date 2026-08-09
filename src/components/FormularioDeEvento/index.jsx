@@ -7,9 +7,23 @@ import { Botao } from '../Botao';
 
 import './formulario-de-evento.estilos.css';
 
-export function FormularioDeEvento( {temas} ) {
+export function FormularioDeEvento({ temas }) {
+
+  function aoFormSubmetido(formData) {
+    const evento = {
+      id: 1,
+      capa: formData.get('capa'),
+      tema: temas.find(function (item) {
+        return item.id === formData.get('tema')
+      }),
+      data: new Date(formData.get('dataEvento')),
+      titulo: formData.get('nomeEvento'),
+    }
+    console.log("Esse é o evento", evento);
+  }
+
   return (
-    <form className="form-evento">
+    <form className="form-evento" action={aoFormSubmetido}>
       <TituloFormulario>
         Preencha para criar um evento:
       </TituloFormulario>
